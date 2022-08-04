@@ -20,6 +20,10 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.10"
+pydantic = {extras = ["dotenv"], version = "^1.9.1"}
+inflection = "^0.5.1"
+sqlalchemy = {git = "https://github.com/sqlalchemy/sqlalchemy"}
+uuid6 = "^2022.6.25"
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.6.0"
