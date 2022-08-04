@@ -24,6 +24,8 @@ pydantic = {extras = ["dotenv"], version = "^1.9.1"}
 inflection = "^0.5.1"
 sqlalchemy = {git = "https://github.com/sqlalchemy/sqlalchemy"}
 uuid6 = "^2022.6.25"
+anyio = "^3.6.1"
+strawberry-graphql = {version = "^0.123.3", extras = ["asgi"]}
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.6.0"
@@ -32,6 +34,7 @@ isort = "^5.10.1"
 mypy = "^0.971"
 flake8 = "^4.0.1"
 pytest = "^7.1.2"
+strawberry-graphql = {version = "^0.123.3", extras = ["debug-server"]}
 
 [tool.poetry-dynamic-versioning]
 enable = true
