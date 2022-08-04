@@ -1,0 +1,52 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Alembic :: Generate revision",
+            "console": "integratedTerminal",
+            "type": "python",
+            "request": "launch",
+            "module": "alembic",
+            "args": [
+                "--name",
+                "${input:module}",
+                "revision",
+                "--message",
+                "${input:message}",
+                "--autogenerate",
+            ],
+        },
+        {
+            "name": "Alembic :: Upgrade database",
+            "console": "integratedTerminal",
+            "type": "python",
+            "request": "launch",
+            "module": "alembic",
+            "args": [
+                "--name",
+                "${input:module}",
+                "upgrade",
+                "${input:revision}",
+            ],
+        },
+    ],
+    "inputs": [
+        {
+            "id": "module",
+            "type": "pickString",
+            "description": "Server module",
+            "options": ["static"]
+        },
+        {
+            "id": "message",
+            "type": "promptString",
+            "description": "Revision message",
+        },
+        {
+            "id": "revision",
+            "type": "promptString",
+            "default": "head",
+            "description": "Revision identifier",
+        },
+    ],
+}
