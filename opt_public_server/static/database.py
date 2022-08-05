@@ -17,13 +17,13 @@ from sqlalchemy.orm import (
 from sqlalchemy.types import Numeric, String, Uuid as SQLUUID
 from uuid6 import uuid7
 
-from opt_public_server.main.settings import settings
+from opt_public_server.main.settings import get_settings
 
 
 # Connection setup
 
 
-engine = create_engine(settings.static_database_url, future=True, echo=True)
+engine = create_engine(get_settings().static_database_url, future=True, echo=True)
 
 
 class Base(MappedAsDataclass, DeclarativeBase):

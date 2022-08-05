@@ -1,12 +1,12 @@
 from migrations.base_env import DatabaseInfo, run_migrations, specify  # type: ignore
 
 import opt_public_server.static.database
-from opt_public_server.main.settings import settings
+from opt_public_server.main.settings import get_settings
 
 
 specify(
     DatabaseInfo(
-        url=settings.static_database_url,
+        url=get_settings().static_database_url,
         engine=opt_public_server.static.database.engine,
         metadata=opt_public_server.static.database.Base.metadata,
     )
