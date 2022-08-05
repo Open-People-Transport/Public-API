@@ -8,7 +8,7 @@
             "request": "launch",
             "module": "uvicorn",
             "args": [
-                "opt_public_server.main.server:app",
+                "opt_public_server.main.app:app",
             ],
         },
         {

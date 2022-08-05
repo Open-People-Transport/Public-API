@@ -17,7 +17,7 @@ from sqlalchemy.orm import (
 from sqlalchemy.types import Numeric, String, Uuid as SQLUUID
 from uuid6 import uuid7
 
-from opt_public_server.main.settings import get_settings
+from opt_public_server.common.settings import get_settings
 
 
 # Connection setup

@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 
-from .settings import get_settings
+from opt_public_server.common.settings import get_settings
 
 
 app = FastAPI(
