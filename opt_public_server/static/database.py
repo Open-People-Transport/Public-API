@@ -10,6 +10,7 @@ from sqlalchemy.orm import (
     DeclarativeBase,
     Mapped,
     MappedAsDataclass,
+    Session,
     declared_attr,
     mapped_column,
     relationship,
@@ -24,6 +25,11 @@ from opt_public_server.common.settings import get_settings
 
 
 engine = create_engine(get_settings().static_database_url, future=True, echo=True)
+
+
+def gen_session():
+    with Session(bind=engine, future=True) as session:
+        yield session
 
 
 class Base(MappedAsDataclass, DeclarativeBase):

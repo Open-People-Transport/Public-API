@@ -3,6 +3,8 @@ from fastapi.responses import RedirectResponse
 
 from opt_public_server.common.settings import get_settings
 
+from . import graphql
+
 
 app = FastAPI(
     debug=True,
@@ -17,6 +19,7 @@ app = FastAPI(
         "name": get_settings().app_license,
     },
 )
+app.include_router(graphql.router, prefix="/graphql")
 
 
 @app.get("/")
