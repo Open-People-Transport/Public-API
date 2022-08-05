@@ -25,7 +25,9 @@ inflection = "^0.5.1"
 sqlalchemy = {git = "https://github.com/sqlalchemy/sqlalchemy"}
 uuid6 = "^2022.6.25"
 anyio = "^3.6.1"
-strawberry-graphql = {version = "^0.123.3", extras = ["asgi"]}
+strawberry-graphql = {version = "^0.123.3", extras = ["fastapi"]}
+fastapi = "^0.79.0"
+uvicorn = {extras = ["standard"], version = "^0.18.2"}
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.6.0"
@@ -34,7 +36,6 @@ isort = "^5.10.1"
 mypy = "^0.971"
 flake8 = "^4.0.1"
 pytest = "^7.1.2"
-strawberry-graphql = {version = "^0.123.3", extras = ["debug-server"]}
 alembic = "^1.8.1"
 
 [tool.poetry-dynamic-versioning]

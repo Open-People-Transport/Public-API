@@ -2,6 +2,16 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Uvicorn :: Run server",
+            "console": "integratedTerminal",
+            "type": "python",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "opt_public_server.main.server:app",
+            ],
+        },
+        {
             "name": "Alembic :: Generate revision",
             "console": "integratedTerminal",
             "type": "python",
@@ -9,8 +19,6 @@
             "module": "alembic",
             "args": [
                 "--name",
-                "${input:module}",
-                "revision",
                 "--message",
                 "${input:message}",
                 "--autogenerate",
