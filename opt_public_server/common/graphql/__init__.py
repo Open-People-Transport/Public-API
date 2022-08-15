@@ -1,7 +1,9 @@
 from dataclasses import dataclass
 from typing import Any, TypeAlias
 
+import strawberry
 import strawberry.types
+import strawberry.types.types
 from sqlalchemy.orm import Session
 from strawberry.fastapi import BaseContext
 
