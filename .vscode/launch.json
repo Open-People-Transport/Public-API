@@ -10,6 +10,7 @@
             "args": [
                 "opt_public_server.main.app:app",
             ],
+            "justMyCode": false,
         },
         {
             "name": "Alembic :: Generate revision",
@@ -19,10 +20,13 @@
             "module": "alembic",
             "args": [
                 "--name",
+                "${input:module}",
+                "revision",
                 "--message",
                 "${input:message}",
                 "--autogenerate",
             ],
+            "justMyCode": false,
         },
         {
             "name": "Alembic :: Upgrade database",
@@ -36,6 +40,7 @@
                 "upgrade",
                 "${input:revision}",
             ],
+            "justMyCode": false,
         },
     ],
     "inputs": [
