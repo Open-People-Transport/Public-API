@@ -1,0 +1,18 @@
+query {
+  cities {
+    count
+    edges {
+      node {
+        id
+        name
+        abbreviation
+        geobounds {
+          minLat
+          minLon
+          maxLat
+          maxLon
+        }
+      }
+    }
+  }
+}

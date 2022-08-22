@@ -1,0 +1,12 @@
+mutation($city: CityInput!) {
+  addCity(city: $city) {
+    name
+    abbreviation
+    geobounds {
+      minLat
+      minLon
+      maxLat
+      maxLon
+    }
+  }
+}

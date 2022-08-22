@@ -1,0 +1,16 @@
+{
+  "data": {
+    "addCity": {
+      "name": "New City",
+      "abbreviation": "newcity",
+      "geobounds": {
+        "minLat": "12.345678",
+        "minLon": "123.456789",
+        "maxLat": "12.345678",
+        "maxLon": "123.456789"
+      }
+    }
+  },
+  "errors": null,
+  "extensions": {}
+}

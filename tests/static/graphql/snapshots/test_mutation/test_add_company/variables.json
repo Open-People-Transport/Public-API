@@ -1,0 +1,11 @@
+{
+  "company": {
+    "name": "New Company",
+    "abbreviation": "newcomp",
+    "geolocation": {
+      "lat": "12.345678",
+      "lon": "123.456789"
+    },
+    "cityId": "0182c670-fe8e-7686-b0bc-569973c69c40"
+  }
+}

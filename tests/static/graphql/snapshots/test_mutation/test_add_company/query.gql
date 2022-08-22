@@ -1,0 +1,11 @@
+mutation($company: CompanyInput!) {
+  addCompany(company: $company) {
+    name
+    abbreviation
+    geolocation {
+      lat
+      lon
+    }
+    cityId
+  }
+}

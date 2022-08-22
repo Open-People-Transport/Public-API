@@ -23,6 +23,18 @@
             "env": {"PYTEST_ADDOPTS": "--no-cov"},
         },
         {
+            "name": "Python :: Update test snapshots",
+            "type": "python",
+            "request": "launch",
+            "module": "pytest",
+            "args": [
+                "--snapshot-update",
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {"PYTEST_ADDOPTS": "--no-cov"},
+        },
+        {
             "name": "Alembic :: Generate revision",
             "console": "integratedTerminal",
             "type": "python",

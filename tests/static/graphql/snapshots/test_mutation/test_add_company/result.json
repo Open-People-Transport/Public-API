@@ -1,0 +1,7 @@
+{
+  "data": null,
+  "errors": [
+    "Cannot query field 'cityId' on type 'Company'."
+  ],
+  "extensions": null
+}
