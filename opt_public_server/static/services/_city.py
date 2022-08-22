@@ -1,24 +1,19 @@
 from uuid import UUID
 
-from opt_public_server.common.graphql import Info
+from opt_public_server.common.repositories import Repository
 from opt_public_server.static.models import City
-from opt_public_server.static.repositories import CityRepository
 
 
 class CityService:
-    def __init__(self, repository: CityRepository) -> None:
-        self.repo = repository
+    def __init__(self, repository: Repository[City]) -> None:
+        self.repository = repository
 
     def list(self) -> list[City]:
-        return self.repo.list()
+        return self.repository.list()
 
     def get(self, id: UUID) -> City:
-        return self.repo.get(id)
+        return self.repository.get(id)
 
     def add(self, model: City) -> City:
-        return self.repo.add(model)
-
-    @classmethod
-    def from_graphql_info(cls, info: Info):
-        repository = CityRepository(db_session=info.context.static_db)
-        return cls(repository=repository)
+        self.repository.create(model)
+        return self.get(model.id)

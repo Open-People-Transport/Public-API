@@ -4,13 +4,15 @@ from typing import Any, TypeAlias
 import strawberry
 import strawberry.types
 import strawberry.types.types
-from sqlalchemy.orm import Session
 from strawberry.fastapi import BaseContext
+
+from opt_public_server.static.services import CityService, CompanyService
 
 
 @dataclass(kw_only=True, slots=True)
 class Context(BaseContext):
-    static_db: Session
+    city_service: CityService
+    company_service: CompanyService
 
 
 Info: TypeAlias = strawberry.types.Info[Context, Any]
