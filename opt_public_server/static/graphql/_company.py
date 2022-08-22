@@ -30,6 +30,7 @@ class CompanyInput:
     name: str
     abbreviation: str
     geolocation: GeolocationInput
+    city_id: UUID
     id: Optional[UUID] = None
 
     def to_model(self) -> models.Company:
@@ -40,5 +41,6 @@ class CompanyInput:
             name=self.name,
             abbreviation=self.abbreviation,
             geolocation=self.geolocation.to_model(),
+            city_id=self.city_id,
             **kwargs,
         )
