@@ -1,3 +1,5 @@
+from uuid import UUID
+
 import strawberry
 
 from opt_public_server.common.graphql import Connection, Edge, Info
@@ -23,3 +25,17 @@ class Query:
         edges = list(map(lambda node: Edge[Company](node=node), nodes))
         connection = Connection[Company](count=len(edges), edges=edges)
         return connection
+
+    @strawberry.field
+    def city(self, id: UUID, info: Info) -> Edge[City]:
+        model = info.context.city_service.get(id)
+        node = City.from_model(model)
+        edge = Edge(node=node)
+        return edge
+
+    @strawberry.field
+    def company(self, id: UUID, info: Info) -> Edge[Company]:
+        model = info.context.company_service.get(id)
+        node = Company.from_model(model)
+        edge = Edge(node=node)
+        return edge

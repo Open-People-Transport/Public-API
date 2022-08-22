@@ -1,0 +1,19 @@
+{
+  "data": {
+    "city": {
+      "node": {
+        "id": "0182c670-fe8e-7686-b0bc-569973c69c40",
+        "name": "Test City 1",
+        "abbreviation": "testcity1",
+        "geobounds": {
+          "minLat": "12.345678",
+          "minLon": "12.345678",
+          "maxLat": "87.654321",
+          "maxLon": "87.654321"
+        }
+      }
+    }
+  },
+  "errors": null,
+  "extensions": {}
+}

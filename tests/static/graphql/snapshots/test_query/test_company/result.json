@@ -1,0 +1,17 @@
+{
+  "data": {
+    "company": {
+      "node": {
+        "id": "0182c68d-0dda-7cce-b641-c8b0a4d531d1",
+        "name": "Test Company 1",
+        "abbreviation": "testcomp1",
+        "geolocation": {
+          "lat": "12.345678",
+          "lon": "123.456789"
+        }
+      }
+    }
+  },
+  "errors": null,
+  "extensions": {}
+}

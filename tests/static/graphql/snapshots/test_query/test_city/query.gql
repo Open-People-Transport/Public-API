@@ -1,0 +1,15 @@
+query {
+  city(id: "0182c670-fe8e-7686-b0bc-569973c69c40") {
+    node {
+      id
+      name
+      abbreviation
+      geobounds {
+        minLat
+        minLon
+        maxLat
+        maxLon
+      }
+    }
+  }
+}

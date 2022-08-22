@@ -1,0 +1,13 @@
+query {
+  company(id: "0182c68d-0dda-7cce-b641-c8b0a4d531d1") {
+    node {
+      id
+      name
+      abbreviation
+      geolocation {
+        lat
+        lon
+      }
+    }
+  }
+}
