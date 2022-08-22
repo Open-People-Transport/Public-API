@@ -31,18 +31,18 @@ class Base(MappedAsDataclass, DeclarativeBase):
 
 class City(Base, kw_only=True):
     id: Mapped[UUIDPK]
-    name: Mapped[FullName] = mapped_column(nullable=False)
-    abbreviation: Mapped[Abbreviation] = mapped_column(nullable=False)
-    min_lat: Mapped[Latitude] = mapped_column(nullable=False)
-    min_lon: Mapped[Longitude] = mapped_column(nullable=False)
-    max_lat: Mapped[Latitude] = mapped_column(nullable=False)
-    max_lon: Mapped[Longitude] = mapped_column(nullable=False)
+    name: Mapped[FullName]
+    abbreviation: Mapped[Abbreviation]
+    min_lat: Mapped[Latitude]
+    min_lon: Mapped[Longitude]
+    max_lat: Mapped[Latitude]
+    max_lon: Mapped[Longitude]
 
 
 class Company(Base, kw_only=True):
     id: Mapped[UUIDPK]
-    name: Mapped[FullName] = mapped_column(nullable=False)
-    abbreviation: Mapped[Abbreviation] = mapped_column(nullable=False)
-    lat: Mapped[Latitude] = mapped_column(nullable=False)
-    lon: Mapped[Longitude] = mapped_column(nullable=False)
-    city_id: Mapped[UUID] = mapped_column(ForeignKey(City.id), nullable=False)
+    name: Mapped[FullName]
+    abbreviation: Mapped[Abbreviation]
+    lat: Mapped[Latitude]
+    lon: Mapped[Longitude]
+    city_id: Mapped[UUID] = mapped_column(ForeignKey(City.id))
