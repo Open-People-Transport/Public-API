@@ -2,8 +2,8 @@ from uuid import UUID
 
 from sqlalchemy.orm import Session
 
-from opt_public_server.common.models.geography import Geolocation, Latitude, Longitude
-from opt_public_server.static.models.company import Company
+from opt_public_server.common.models import Geolocation, Latitude, Longitude
+from opt_public_server.static.models import Company
 
 
 class CompanyRepository:

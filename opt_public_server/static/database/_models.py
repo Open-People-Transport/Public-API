@@ -11,7 +11,7 @@ from sqlalchemy.orm import (
     registry,
 )
 
-from opt_public_server.common.database.types import (
+from opt_public_server.common.database import (
     UUIDPK,
     Abbreviation,
     FullName,

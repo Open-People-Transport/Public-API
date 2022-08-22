@@ -2,8 +2,7 @@ from uuid import UUID
 
 from pydantic import Field
 
-from opt_public_server.common.models.geography import Geolocation
-from opt_public_server.common.models.node import Node
+from opt_public_server.common.models import Geolocation, Node
 
 
 class Company(Node):

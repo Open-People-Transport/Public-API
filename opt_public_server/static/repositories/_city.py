@@ -2,8 +2,8 @@ from uuid import UUID
 
 from sqlalchemy.orm import Session
 
-from opt_public_server.common.models.geography import Geobounds, Latitude, Longitude
-from opt_public_server.static.models.city import City
+from opt_public_server.common.models import Geobounds, Latitude, Longitude
+from opt_public_server.static.models import City
 
 
 class CityRepository:

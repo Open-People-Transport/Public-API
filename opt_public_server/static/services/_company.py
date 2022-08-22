@@ -1,8 +1,8 @@
 from uuid import UUID
 
 from opt_public_server.common.graphql import Info
-from opt_public_server.static.models.company import Company
-from opt_public_server.static.repositories.company_repository import CompanyRepository
+from opt_public_server.static.models import Company
+from opt_public_server.static.repositories import CompanyRepository
 
 
 class CompanyService:

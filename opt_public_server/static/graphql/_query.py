@@ -1,12 +1,10 @@
 import strawberry
 
-from opt_public_server.common.graphql import Info
-from opt_public_server.common.graphql.connections import Connection, Edge
-from opt_public_server.static.services.city_service import CityService
-from opt_public_server.static.services.company_service import CompanyService
+from opt_public_server.common.graphql import Connection, Edge, Info
+from opt_public_server.static.services import CityService, CompanyService
 
-from .city import City
-from .company import Company
+from ._city import City
+from ._company import Company
 
 
 @strawberry.type

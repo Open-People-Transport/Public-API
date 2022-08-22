@@ -3,13 +3,12 @@ from uuid import UUID
 
 import strawberry
 
-from opt_public_server.common.graphql.connections import Node
-from opt_public_server.common.graphql.geography import Geolocation, GeolocationInput
+from opt_public_server.common.graphql import Geolocation, GeolocationInput, Node
 from opt_public_server.common.utils import description
-from opt_public_server.static.models.company import Company as CompanyModel
+from opt_public_server.static import models
 
 
-@strawberry.type(description=description(CompanyModel))
+@strawberry.type(description=description(models.Company))
 class Company(Node):
     id: UUID
     name: str
@@ -17,7 +16,7 @@ class Company(Node):
     geolocation: Geolocation
 
     @classmethod
-    def from_model(cls, model: CompanyModel):
+    def from_model(cls, model: models.Company):
         return Company(
             id=model.id,
             name=model.name,
@@ -26,18 +25,18 @@ class Company(Node):
         )
 
 
-@strawberry.input(description=description(CompanyModel))
+@strawberry.input(description=description(models.Company))
 class CompanyInput:
     name: str
     abbreviation: str
     geolocation: GeolocationInput
     id: Optional[UUID] = None
 
-    def to_model(self) -> CompanyModel:
+    def to_model(self) -> models.Company:
         kwargs = dict[str, Any]()
         if self.id:
             kwargs.update(id=self.id)
-        return CompanyModel(
+        return models.Company(
             name=self.name,
             abbreviation=self.abbreviation,
             geolocation=self.geolocation.to_model(),

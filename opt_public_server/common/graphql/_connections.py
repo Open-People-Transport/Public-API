@@ -3,11 +3,11 @@ from uuid import UUID
 
 import strawberry
 
-from opt_public_server.common.models.node import Node as NodeModel
+from opt_public_server.common import models
 from opt_public_server.common.utils import description
 
 
-@strawberry.interface(description=description(NodeModel))
+@strawberry.interface(description=description(models.Node))
 class Node:
     id: UUID
 

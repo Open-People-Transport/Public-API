@@ -4,10 +4,11 @@ from strawberry.fastapi import GraphQLRouter
 from strawberry.tools import merge_types
 
 import opt_public_server.static.database
-import opt_public_server.static.graphql
 from opt_public_server.common.graphql import Context
-from opt_public_server.static.graphql.mutation import Mutation as StaticMutation
-from opt_public_server.static.graphql.query import Query as StaticQuery
+from opt_public_server.static.graphql import (
+    Mutation as StaticMutation,
+    Query as StaticQuery,
+)
 
 
 def get_context(

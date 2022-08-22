@@ -1,8 +1,7 @@
 from migrations.base_env import DatabaseInfo, run_migrations, specify  # type: ignore
 
 from opt_public_server.common.settings import get_settings
-from opt_public_server.static.database.engine import engine
-from opt_public_server.static.database.models import Base
+from opt_public_server.static.database import Base, engine
 
 
 specify(

@@ -1,8 +1,8 @@
 from uuid import UUID
 
 from opt_public_server.common.graphql import Info
-from opt_public_server.static.models.city import City
-from opt_public_server.static.repositories.city_repository import CityRepository
+from opt_public_server.static.models import City
+from opt_public_server.static.repositories import CityRepository
 
 
 class CityService:

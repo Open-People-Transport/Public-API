@@ -1,7 +1,6 @@
 from pydantic import Field
 
-from opt_public_server.common.models.geography import Geobounds
-from opt_public_server.common.models.node import Node
+from opt_public_server.common.models import Geobounds, Node
 
 
 class City(Node):
