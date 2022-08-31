@@ -5,10 +5,10 @@ import strawberry
 
 from opt_public_server.common.graphql import Geobounds, GeoboundsInput, Node
 from opt_public_server.common.utils import description
-from opt_public_server.static import models
+from opt_public_server.static import core
 
 
-@strawberry.type(description=description(models.City))
+@strawberry.type(description=description(core.City))
 class City(Node):
     id: UUID
     name: str
@@ -16,7 +16,7 @@ class City(Node):
     geobounds: Geobounds
 
     @classmethod
-    def from_model(cls, model: models.City):
+    def from_model(cls, model: core.City):
         return cls(
             id=model.id,
             name=model.name,
@@ -25,18 +25,18 @@ class City(Node):
         )
 
 
-@strawberry.input(description=description(models.City))
+@strawberry.input(description=description(core.City))
 class CityInput:
     name: str
     abbreviation: str
     geobounds: GeoboundsInput
     id: Optional[UUID] = None
 
-    def to_model(self) -> models.City:
+    def to_model(self) -> core.City:
         kwargs = dict[str, Any]()
         if self.id:
             kwargs.update(id=self.id)
-        return models.City(
+        return core.City(
             name=self.name,
             abbreviation=self.abbreviation,
             geobounds=self.geobounds.to_model(),

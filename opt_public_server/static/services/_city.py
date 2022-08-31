@@ -1,7 +1,7 @@
 from uuid import UUID
 
 from opt_public_server.common.repositories import Repository
-from opt_public_server.static.models import City
+from opt_public_server.static.core import City
 
 
 class CityService:

@@ -3,13 +3,13 @@ from uuid import uuid4
 import pytest
 from sqlalchemy.exc import NoResultFound
 
-from opt_public_server.common.models import Geobounds, Geolocation, Latitude, Longitude
+from opt_public_server.common.core import Geobounds, Geolocation, Latitude, Longitude
+from opt_public_server.static.core import City, Company
 from opt_public_server.static.database import (
     CityRepository,
     CompanyRepository,
     gen_session,
 )
-from opt_public_server.static.models import City, Company
 
 
 @pytest.fixture

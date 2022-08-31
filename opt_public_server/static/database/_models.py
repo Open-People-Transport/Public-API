@@ -13,7 +13,7 @@ from sqlalchemy.orm import (
     registry,
 )
 
-from opt_public_server.common import models as common_models
+from opt_public_server.common import core as common_core
 from opt_public_server.common.database import (
     UUIDPK,
     Abbreviation,
@@ -22,7 +22,7 @@ from opt_public_server.common.database import (
     Longitude,
     type_annotation_map,
 )
-from opt_public_server.static import models
+from opt_public_server.static import core
 
 
 class Base(MappedAsDataclass, DeclarativeBase):
@@ -42,21 +42,21 @@ class City(Base, kw_only=True):
     max_lat: Mapped[Latitude]
     max_lon: Mapped[Longitude]
 
-    def to_model(self) -> models.City:
-        return models.City(
+    def to_model(self) -> core.City:
+        return core.City(
             id=self.id,
             name=self.name,
             abbreviation=self.abbreviation,
-            geobounds=common_models.Geobounds(
-                min_lat=common_models.Latitude(self.min_lat),
-                min_lon=common_models.Longitude(self.min_lon),
-                max_lat=common_models.Latitude(self.max_lat),
-                max_lon=common_models.Longitude(self.max_lon),
+            geobounds=common_core.Geobounds(
+                min_lat=common_core.Latitude(self.min_lat),
+                min_lon=common_core.Longitude(self.min_lon),
+                max_lat=common_core.Latitude(self.max_lat),
+                max_lon=common_core.Longitude(self.max_lon),
             ),
         )
 
     @classmethod
-    def from_model(cls: type[City], model: models.City):
+    def from_model(cls: type[City], model: core.City):
         return cls(
             id=model.id,
             name=model.name,
@@ -76,20 +76,20 @@ class Company(Base, kw_only=True):
     lon: Mapped[Longitude]
     city_id: Mapped[UUID] = mapped_column(ForeignKey(City.id))
 
-    def to_model(self) -> models.Company:
-        return models.Company(
+    def to_model(self) -> core.Company:
+        return core.Company(
             id=self.id,
             name=self.name,
             abbreviation=self.abbreviation,
-            geolocation=common_models.Geolocation(
-                lat=common_models.Latitude(self.lat),
-                lon=common_models.Longitude(self.lon),
+            geolocation=common_core.Geolocation(
+                lat=common_core.Latitude(self.lat),
+                lon=common_core.Longitude(self.lon),
             ),
             city_id=self.city_id,
         )
 
     @classmethod
-    def from_model(cls: type[Company], model: models.Company):
+    def from_model(cls: type[Company], model: core.Company):
         return cls(
             id=model.id,
             name=model.name,

@@ -5,10 +5,10 @@ import strawberry
 
 from opt_public_server.common.graphql import Geolocation, GeolocationInput, Node
 from opt_public_server.common.utils import description
-from opt_public_server.static import models
+from opt_public_server.static import core
 
 
-@strawberry.type(description=description(models.Company))
+@strawberry.type(description=description(core.Company))
 class Company(Node):
     id: UUID
     name: str
@@ -16,7 +16,7 @@ class Company(Node):
     geolocation: Geolocation
 
     @classmethod
-    def from_model(cls, model: models.Company):
+    def from_model(cls, model: core.Company):
         return Company(
             id=model.id,
             name=model.name,
@@ -25,7 +25,7 @@ class Company(Node):
         )
 
 
-@strawberry.input(description=description(models.Company))
+@strawberry.input(description=description(core.Company))
 class CompanyInput:
     name: str
     abbreviation: str
@@ -33,11 +33,11 @@ class CompanyInput:
     city_id: UUID
     id: Optional[UUID] = None
 
-    def to_model(self) -> models.Company:
+    def to_model(self) -> core.Company:
         kwargs = dict[str, Any]()
         if self.id:
             kwargs.update(id=self.id)
-        return models.Company(
+        return core.Company(
             name=self.name,
             abbreviation=self.abbreviation,
             geolocation=self.geolocation.to_model(),

@@ -1,34 +1,17 @@
-from pydantic import BaseModel, ConstrainedDecimal, validator
+from uuid import UUID
+
+from pydantic import BaseModel, Field, validator
+from uuid6 import uuid7
+
+from ._types import Latitude, Longitude
 
 
-class Latitude(ConstrainedDecimal):
+class Node(BaseModel):
     """
-    Latitude in decimal format with 6 places after the floating point.
-
-    Ranges from -90.000000 to 90.000000.
-
-    Provides precision of about 10cm.
-    """
-
-    ge = -90
-    le = 90
-    max_digits = 8
-    decimal_places = 6
-
-
-class Longitude(ConstrainedDecimal):
-    """
-    Longitude in decimal format with 6 places after the floating point.
-
-    Ranges from -180.000000 to 180.000000.
-
-    Provides precision of about 10cm.
+    An object with a universally unique identifier.
     """
 
-    ge = -180
-    le = 180
-    max_digits = 9
-    decimal_places = 6
+    id: UUID = Field(default_factory=uuid7)
 
 
 class Geolocation(BaseModel):

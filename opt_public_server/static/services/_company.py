@@ -1,7 +1,7 @@
 from uuid import UUID
 
 from opt_public_server.common.repositories import Repository
-from opt_public_server.static.models import Company
+from opt_public_server.static.core import Company
 
 
 class CompanyService:

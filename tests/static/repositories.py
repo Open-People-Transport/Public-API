@@ -1,8 +1,8 @@
 from uuid import UUID
 
-from opt_public_server.common.models import Geobounds, Geolocation, Latitude, Longitude
+from opt_public_server.common.core import Geobounds, Geolocation, Latitude, Longitude
 from opt_public_server.common.repositories import Repository
-from opt_public_server.static.models import City, Company
+from opt_public_server.static.core import City, Company
 
 
 class CityTestRepository(Repository[City]):
