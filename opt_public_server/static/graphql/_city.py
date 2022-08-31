@@ -3,7 +3,13 @@ from uuid import UUID
 
 import strawberry
 
-from opt_public_server.common.graphql import Geobounds, GeoboundsInput, Node
+from opt_public_server.common.graphql import (
+    Abbreviation,
+    FullName,
+    Geobounds,
+    GeoboundsInput,
+    Node,
+)
 from opt_public_server.common.utils import description
 from opt_public_server.static import core
 
@@ -11,8 +17,8 @@ from opt_public_server.static import core
 @strawberry.type(description=description(core.City))
 class City(Node):
     id: UUID
-    name: str
-    abbreviation: str
+    name: FullName
+    abbreviation: Abbreviation
     geobounds: Geobounds
 
     @classmethod
@@ -27,8 +33,8 @@ class City(Node):
 
 @strawberry.input(description=description(core.City))
 class CityInput:
-    name: str
-    abbreviation: str
+    name: FullName
+    abbreviation: Abbreviation
     geobounds: GeoboundsInput
     id: Optional[UUID] = None
 
