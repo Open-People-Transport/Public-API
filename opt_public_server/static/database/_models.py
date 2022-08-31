@@ -14,9 +14,19 @@ from sqlalchemy.orm import (
 )
 
 from opt_public_server.common import core as common_core
-from opt_public_server.common.core import Abbreviation, FullName, Latitude, Longitude
-from opt_public_server.common.database import UUIDPK, type_annotation_map
+from opt_public_server.common.core import (
+    Abbreviation,
+    FullName,
+    Latitude,
+    Longitude,
+    NamePrefix,
+    ShorterName,
+)
+from opt_public_server.common.database import UUIDPK
 from opt_public_server.static import core
+from opt_public_server.static.core import Type
+
+from ._types import type_annotation_map
 
 
 class Base(MappedAsDataclass, DeclarativeBase):
@@ -91,4 +101,49 @@ class Company(Base, kw_only=True):
             lat=model.geolocation.lat,
             lon=model.geolocation.lon,
             city_id=model.city_id,
+        )
+
+
+class Route(Base, kw_only=True):
+    id: Mapped[UUIDPK]
+    number: Mapped[ShorterName]
+    number_prefix: Mapped[NamePrefix]
+    type: Mapped[Type]
+    city_id: Mapped[UUID] = mapped_column(ForeignKey(City.id))
+
+    def to_model(self) -> core.Route:
+        return core.Route(
+            id=self.id,
+            number=self.number,
+            number_prefix=self.number_prefix,
+            type=self.type,
+            city_id=self.city_id,
+        )
+
+    @classmethod
+    def from_model(cls: type[Route], model: core.Route):
+        return cls(
+            id=model.id,
+            number=model.number,
+            number_prefix=model.number_prefix,
+            type=model.type,
+            city_id=model.city_id,
+        )
+
+
+class CompanyRoute(Base, kw_only=True):
+    company_id: Mapped[UUID] = mapped_column(ForeignKey(Company.id), primary_key=True)
+    route_id: Mapped[UUID] = mapped_column(ForeignKey(Route.id), primary_key=True)
+
+    def to_model(self) -> core.CompanyRoute:
+        return core.CompanyRoute(
+            company_id=self.company_id,
+            route_id=self.route_id,
+        )
+
+    @classmethod
+    def from_model(cls: type[CompanyRoute], model: core.CompanyRoute):
+        return cls(
+            company_id=model.company_id,
+            route_id=model.route_id,
         )

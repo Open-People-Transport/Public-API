@@ -1,11 +1,15 @@
 from uuid import UUID
 
 from opt_public_server.common.core import Geobounds, Geolocation, Latitude, Longitude
-from opt_public_server.common.repositories import Repository
-from opt_public_server.static.core import City, Company
+from opt_public_server.static.core import City, Company, CompanyRoute, Route
+from opt_public_server.static.repositories import (
+    CityRepository,
+    CompanyRepository,
+    RouteRepository,
+)
 
 
-class CityTestRepository(Repository[City]):
+class CityTestRepository(CityRepository):
     def __init__(self) -> None:
         self._list = [
             City(
@@ -45,7 +49,7 @@ class CityTestRepository(Repository[City]):
         return self._list.remove(self.get(id))
 
 
-class CompanyTestRepository(Repository[Company]):
+class CompanyTestRepository(CompanyRepository):
     def __init__(self) -> None:
         self._list = [
             Company(
@@ -91,3 +95,62 @@ class CompanyTestRepository(Repository[Company]):
 
     def delete(self, id: UUID) -> None:
         return self._list.remove(self.get(id))
+
+    def add_route(self, model: Company, edge: CompanyRoute) -> None:
+        raise NotImplementedError
+
+
+class RouteTestRepository(RouteRepository):
+    def __init__(self) -> None:
+        self._list = [
+            Route(
+                id=UUID("0182f596-bce6-773d-9c2c-d0d3fbf70aab"),
+                number="1",
+                number_prefix="A-",
+                type="BUS",
+                city_id=UUID("0182c670-fe8e-7686-b0bc-569973c69c40"),
+            ),
+            Route(
+                id=UUID("0182f596-bfce-7401-a8c5-4650dd30db4d"),
+                number="2",
+                number_prefix="A-",
+                type="BUS",
+                city_id=UUID("0182c670-fe8e-7686-b0bc-569973c69c40"),
+            ),
+            Route(
+                id=UUID("0182f596-c115-7b83-b914-502e27815c33"),
+                number="1",
+                number_prefix="Tl-",
+                type="TROLLEY",
+                city_id=UUID("0182c671-4f9a-7bac-8223-f92a7fe4be6d"),
+            ),
+            Route(
+                id=UUID("0182f596-c257-73e6-8c4e-0d2452fc9f10"),
+                number="2",
+                number_prefix="Tm-",
+                type="TRAM",
+                city_id=UUID("0182c671-4f9a-7bac-8223-f92a7fe4be6d"),
+            ),
+            Route(
+                id=UUID("0182f596-c257-73e6-8c4e-0d2452fc9f10"),
+                number="3",
+                number_prefix="T-",
+                type="MINIBUS",
+                city_id=UUID("0182c671-4f9a-7bac-8223-f92a7fe4be6d"),
+            ),
+        ]
+
+    def list(self) -> list[Route]:
+        return list(self._list)
+
+    def get(self, id: UUID) -> Route:
+        return next(filter(lambda c: c.id == id, self._list))
+
+    def create(self, model: Route) -> None:
+        return self._list.append(model)
+
+    def delete(self, id: UUID) -> None:
+        return self._list.remove(self.get(id))
+
+    def add_company(self, model: Route, edge: CompanyRoute) -> None:
+        raise NotImplementedError

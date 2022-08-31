@@ -15,6 +15,17 @@ Abbreviation = strawberry.scalar(
 )
 
 
+ShorterName = strawberry.scalar(
+    core.ShorterName,
+    description=description(core.ShorterName),
+)
+
+NamePrefix = strawberry.scalar(
+    core.NamePrefix,
+    description=description(core.NamePrefix),
+)
+
+
 Latitude = strawberry.scalar(
     core.Latitude,
     description=description(core.Latitude),

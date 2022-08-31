@@ -6,12 +6,16 @@ from strawberry.tools import merge_types
 
 import opt_public_server.static.database
 from opt_public_server.common.graphql import Context
-from opt_public_server.static.database import CityRepository, CompanyRepository
+from opt_public_server.static.database import (
+    CityRepository,
+    CompanyRepository,
+    RouteRepository,
+)
 from opt_public_server.static.graphql import (
     Mutation as StaticMutation,
     Query as StaticQuery,
 )
-from opt_public_server.static.services import CityService, CompanyService
+from opt_public_server.static.services import CityService, CompanyService, RouteService
 
 
 def get_context(
@@ -20,6 +24,7 @@ def get_context(
     return Context(
         city_service=CityService(CityRepository(static_db)),
         company_service=CompanyService(CompanyRepository(static_db)),
+        route_service=RouteService(RouteRepository(static_db)),
     )
 
 

@@ -6,6 +6,7 @@ from opt_public_server.common.graphql import Connection, Edge, Info
 
 from ._city import City
 from ._company import Company
+from ._route import Route
 
 
 @strawberry.type
@@ -27,6 +28,14 @@ class Query:
         return connection
 
     @strawberry.field
+    def routes(self, info: Info) -> Connection[Route]:
+        models = info.context.route_service.list()
+        nodes = map(Route.from_model, models)
+        edges = list(map(lambda node: Edge[Route](node=node), nodes))
+        connection = Connection[Route](count=len(edges), edges=edges)
+        return connection
+
+    @strawberry.field
     def city(self, id: UUID, info: Info) -> Edge[City]:
         model = info.context.city_service.get(id)
         node = City.from_model(model)
@@ -37,5 +46,12 @@ class Query:
     def company(self, id: UUID, info: Info) -> Edge[Company]:
         model = info.context.company_service.get(id)
         node = Company.from_model(model)
+        edge = Edge(node=node)
+        return edge
+
+    @strawberry.field
+    def route(self, id: UUID, info: Info) -> Edge[Route]:
+        model = info.context.route_service.get(id)
+        node = Route.from_model(model)
         edge = Edge(node=node)
         return edge

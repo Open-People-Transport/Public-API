@@ -1,11 +1,11 @@
 from uuid import UUID
 
-from opt_public_server.common.repositories import Repository
 from opt_public_server.static.core import City
+from opt_public_server.static.repositories import CityRepository
 
 
 class CityService:
-    def __init__(self, repository: Repository[City]) -> None:
+    def __init__(self, repository: CityRepository) -> None:
         self.repository = repository
 
     def list(self) -> list[City]:

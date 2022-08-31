@@ -11,6 +11,16 @@ class Abbreviation(ConstrainedStr):
     max_length = 12
 
 
+class ShorterName(ConstrainedStr):
+    min_length = 1
+    max_length = 6
+
+
+class NamePrefix(ConstrainedStr):
+    min_length = 0
+    max_length = 4
+
+
 class Latitude(ConstrainedDecimal):
     """
     Latitude in decimal format with 6 places after the floating point.

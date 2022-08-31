@@ -3,13 +3,12 @@ from uuid import UUID
 from sqlalchemy import delete, select
 from sqlalchemy.orm import Session
 
-from opt_public_server.common.repositories import Repository
-from opt_public_server.static import core
+from opt_public_server.static import core, repositories
 
-from ._models import City, Company
+from ._models import City, Company, CompanyRoute, Route
 
 
-class CityRepository(Repository[core.City]):
+class CityRepository(repositories.CityRepository):
     def __init__(self, session: Session) -> None:
         self.session = session
 
@@ -35,7 +34,7 @@ class CityRepository(Repository[core.City]):
         self.session.execute(stmt)
 
 
-class CompanyRepository(Repository[core.Company]):
+class CompanyRepository(repositories.CompanyRepository):
     def __init__(self, session: Session) -> None:
         self.session = session
 
@@ -59,3 +58,39 @@ class CompanyRepository(Repository[core.Company]):
     def delete(self, id: UUID) -> None:
         stmt = delete(Company).where(Company.id == id)
         self.session.execute(stmt)
+
+    def add_route(self, model: core.Company, edge: core.CompanyRoute) -> None:
+        scalar = CompanyRoute.from_model(edge)
+        self.session.add(scalar)
+        self.session.commit()
+
+
+class RouteRepository(repositories.RouteRepository):
+    def __init__(self, session: Session) -> None:
+        self.session = session
+
+    def list(self) -> list[core.Route]:
+        stmt = select(Route)
+        scalars = self.session.execute(stmt).scalars()
+        models = list(map(Route.to_model, scalars))
+        return models
+
+    def get(self, id: UUID) -> core.Route:
+        stmt = select(Route).where(Route.id == id)
+        scalar = self.session.execute(stmt).scalar_one()
+        model = scalar.to_model()
+        return model
+
+    def create(self, model: core.Route) -> None:
+        scalar = Route.from_model(model)
+        self.session.add(scalar)
+        self.session.commit()
+
+    def delete(self, id: UUID) -> None:
+        stmt = delete(Route).where(Route.id == id)
+        self.session.execute(stmt)
+
+    def add_company(self, model: core.Route, edge: core.CompanyRoute) -> None:
+        scalar = CompanyRoute.from_model(edge)
+        self.session.add(scalar)
+        self.session.commit()
