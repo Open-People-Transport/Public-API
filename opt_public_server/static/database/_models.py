@@ -14,14 +14,8 @@ from sqlalchemy.orm import (
 )
 
 from opt_public_server.common import core as common_core
-from opt_public_server.common.database import (
-    UUIDPK,
-    Abbreviation,
-    FullName,
-    Latitude,
-    Longitude,
-    type_annotation_map,
-)
+from opt_public_server.common.core import Abbreviation, FullName, Latitude, Longitude
+from opt_public_server.common.database import UUIDPK, type_annotation_map
 from opt_public_server.static import core
 
 
@@ -48,10 +42,10 @@ class City(Base, kw_only=True):
             name=self.name,
             abbreviation=self.abbreviation,
             geobounds=common_core.Geobounds(
-                min_lat=common_core.Latitude(self.min_lat),
-                min_lon=common_core.Longitude(self.min_lon),
-                max_lat=common_core.Latitude(self.max_lat),
-                max_lon=common_core.Longitude(self.max_lon),
+                min_lat=self.min_lat,
+                min_lon=self.min_lon,
+                max_lat=self.max_lat,
+                max_lon=self.max_lon,
             ),
         )
 
@@ -82,8 +76,8 @@ class Company(Base, kw_only=True):
             name=self.name,
             abbreviation=self.abbreviation,
             geolocation=common_core.Geolocation(
-                lat=common_core.Latitude(self.lat),
-                lon=common_core.Longitude(self.lon),
+                lat=self.lat,
+                lon=self.lon,
             ),
             city_id=self.city_id,
         )

@@ -1,4 +1,14 @@
-from pydantic import ConstrainedDecimal
+from pydantic import ConstrainedDecimal, ConstrainedStr
+
+
+class FullName(ConstrainedStr):
+    min_length = 4
+    max_length = 60
+
+
+class Abbreviation(ConstrainedStr):
+    min_length = 2
+    max_length = 12
 
 
 class Latitude(ConstrainedDecimal):
