@@ -1,0 +1,68 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Docker: Build image",
+            "type": "shell",
+            "command": "docker",
+            "args": [
+                "build",
+                "--tag",
+                "optrans:latest",
+                "."
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Docker: Run container",
+            "type": "shell",
+            "command": "docker",
+            "args": [
+                "run",
+                "--detach",
+                "--env-file",
+                "./.docker.env",
+                "--publish",
+                "80:80",
+                "--name",
+                "optrans",
+                "optrans:latest"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Docker: Remove old container",
+            "type": "shell",
+            "command": "docker",
+            "args": [
+                "rm",
+                "optrans"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false
+            },
+            "problemMatcher": []
+        }
+    ]
+}
