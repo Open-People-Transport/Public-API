@@ -23,4 +23,8 @@
         "--cov=opt_public_server",
         "--cov-report=term-missing",
     ],
+    "python.linting.banditArgs": [
+        "--configfile",
+        "pyproject.toml",
+    ],
 }
