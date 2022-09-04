@@ -12,3 +12,7 @@ def test_city1_parsing(city1):
 
 def test_company1_parsing(company1):
     pass
+
+
+def test_route1_parsing(route1):
+    pass

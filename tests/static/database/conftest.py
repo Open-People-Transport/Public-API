@@ -2,7 +2,7 @@ from pytest import fixture
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session, sessionmaker
 
-from opt_public_server.static.core import City, Company
+from opt_public_server.static.core import City, Company, Route
 from opt_public_server.static.database import Base
 
 
@@ -48,3 +48,15 @@ def company1():
         "city_id": "0183084b-09c2-7947-9159-be96ff795886",
     }
     return Company(**obj)
+
+
+@fixture
+def route1():
+    obj = {
+        "id": "0183084b-09c9-740e-959d-a4e53e61236d",
+        "number": "1",
+        "number_prefix": "A-",
+        "type": "BUS",
+        "city_id": "0183084b-09c2-7947-9159-be96ff795886",
+    }
+    return Route(**obj)  # type: ignore
