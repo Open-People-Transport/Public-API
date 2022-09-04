@@ -1,0 +1,45 @@
+{
+  "data": {
+    "cities": {
+      "edges": [
+        {
+          "node": {
+            "id": "0182c670-fe8e-7686-b0bc-569973c69c40",
+            "companies": {
+              "count": 2,
+              "edges": [
+                {
+                  "node": {
+                    "id": "0182c68d-0dda-7cce-b641-c8b0a4d531d1"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "0182c68d-11a9-7584-ad76-7bcf720b8dd6"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "node": {
+            "id": "0182c671-4f9a-7bac-8223-f92a7fe4be6d",
+            "companies": {
+              "count": 1,
+              "edges": [
+                {
+                  "node": {
+                    "id": "0182c68d-131d-770f-a41d-742ee9a19d7a"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "errors": null,
+  "extensions": {}
+}

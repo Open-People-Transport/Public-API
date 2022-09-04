@@ -1,8 +1,10 @@
 from pathlib import Path
 from typing import Optional
+from uuid import UUID
 
 from pydantic import parse_file_as
 
+from opt_public_server.common.utils import multifilter
 from opt_public_server.static.core import City, Company, CompanyRoute, Route
 from opt_public_server.static.repositories import (
     CityRepository,
@@ -43,6 +45,12 @@ class CompanyTestRepository(_TestRepository, CompanyRepository):
     def __init__(self) -> None:
         super().__init__(_initial_data["companies"])
 
+    def list(self, city_id: Optional[UUID] = None):
+        filters = []
+        if city_id is not None:
+            filters.append(lambda c: c.city_id == city_id)
+        return list(multifilter(filters, self._data.values()))
+
     def add_route(self, model: Company, edge: CompanyRoute) -> None:
         raise NotImplementedError
 
@@ -50,6 +58,12 @@ class CompanyTestRepository(_TestRepository, CompanyRepository):
 class RouteTestRepository(_TestRepository, RouteRepository):
     def __init__(self) -> None:
         super().__init__(_initial_data["routes"])
+
+    def list(self, city_id: Optional[UUID] = None):
+        filters = []
+        if city_id is not None:
+            filters.append(lambda r: r.city_id == city_id)
+        return list(multifilter(filters, self._data.values()))
 
     def add_company(self, model: Route, edge: CompanyRoute) -> None:
         raise NotImplementedError

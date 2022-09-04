@@ -1,0 +1,17 @@
+query {
+  cities {
+    edges {
+      node {
+        id
+        companies {
+          count
+          edges {
+            node {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}

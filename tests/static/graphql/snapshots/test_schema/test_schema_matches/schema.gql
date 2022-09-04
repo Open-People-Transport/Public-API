@@ -18,6 +18,12 @@ type City implements Node {
   name: FullName!
   abbreviation: Abbreviation!
   geobounds: Geobounds!
+
+  """Transport companies that operate in this city"""
+  companies: CompanyConnection!
+
+  """Transport routes in this city"""
+  routes: RouteConnection!
 }
 
 type CityConnection {

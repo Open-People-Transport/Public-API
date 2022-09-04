@@ -1,3 +1,4 @@
+from typing import Optional
 from uuid import UUID
 
 from sqlalchemy import delete, select
@@ -38,8 +39,10 @@ class CompanyRepository(repositories.CompanyRepository):
     def __init__(self, session: Session) -> None:
         self.session = session
 
-    def list(self) -> list[core.Company]:
+    def list(self, city_id: Optional[UUID] = None) -> list[core.Company]:
         stmt = select(Company)
+        if city_id is not None:
+            stmt = stmt.where(Company.city_id == city_id)
         scalars = self.session.execute(stmt).scalars()
         models = list(map(Company.to_model, scalars))
         return models
@@ -69,8 +72,10 @@ class RouteRepository(repositories.RouteRepository):
     def __init__(self, session: Session) -> None:
         self.session = session
 
-    def list(self) -> list[core.Route]:
+    def list(self, city_id: Optional[UUID] = None) -> list[core.Route]:
         stmt = select(Route)
+        if city_id is not None:
+            stmt = stmt.where(Route.city_id == city_id)
         scalars = self.session.execute(stmt).scalars()
         models = list(map(Route.to_model, scalars))
         return models

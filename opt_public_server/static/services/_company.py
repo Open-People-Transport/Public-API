@@ -1,3 +1,4 @@
+from typing import Optional
 from uuid import UUID
 
 from opt_public_server.static.core import Company, CompanyRoute
@@ -8,8 +9,8 @@ class CompanyService:
     def __init__(self, repository: CompanyRepository) -> None:
         self.repository = repository
 
-    def list(self) -> list[Company]:
-        return self.repository.list()
+    def list(self, city_id: Optional[UUID] = None) -> list[Company]:
+        return self.repository.list(city_id=city_id)
 
     def get(self, id: UUID) -> Company:
         return self.repository.get(id)

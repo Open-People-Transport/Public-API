@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import Optional
 from uuid import UUID
 
 from opt_public_server.static.core import City, Company, CompanyRoute, Route
@@ -24,7 +25,7 @@ class CityRepository(ABC):
 
 class CompanyRepository(ABC):
     @abstractmethod
-    def list(self) -> list[Company]:
+    def list(self, city_id: Optional[UUID] = None) -> list[Company]:
         ...
 
     @abstractmethod
@@ -46,7 +47,7 @@ class CompanyRepository(ABC):
 
 class RouteRepository(ABC):
     @abstractmethod
-    def list(self) -> list[Route]:
+    def list(self, city_id: Optional[UUID] = None) -> list[Route]:
         ...
 
     @abstractmethod
