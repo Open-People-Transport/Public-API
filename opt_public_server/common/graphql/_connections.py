@@ -23,4 +23,5 @@ class Edge(Generic[NodeType]):
 @strawberry.type
 class Connection(Generic[NodeType]):
     count: int
+    nodes: list[NodeType]
     edges: list[Edge[NodeType]]

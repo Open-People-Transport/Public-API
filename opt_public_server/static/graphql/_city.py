@@ -30,17 +30,17 @@ class City(Node):
     @strawberry.field(description="Transport companies that operate in this city")
     def companies(self, info: Info) -> Connection[Company]:
         models = info.context.company_service.list(city_id=self.id)
-        nodes = map(Company.from_model, models)
+        nodes = list(map(Company.from_model, models))
         edges = list(map(lambda node: Edge[Company](node=node), nodes))
-        connection = Connection[Company](count=len(edges), edges=edges)
+        connection = Connection[Company](count=len(edges), nodes=nodes, edges=edges)
         return connection
 
     @strawberry.field(description="Transport routes in this city")
     def routes(self, info: Info) -> Connection[Route]:
         models = info.context.route_service.list(city_id=self.id)
-        nodes = map(Route.from_model, models)
+        nodes = list(map(Route.from_model, models))
         edges = list(map(lambda node: Edge[Route](node=node), nodes))
-        connection = Connection[Route](count=len(edges), edges=edges)
+        connection = Connection[Route](count=len(edges), nodes=nodes, edges=edges)
         return connection
 
     @classmethod

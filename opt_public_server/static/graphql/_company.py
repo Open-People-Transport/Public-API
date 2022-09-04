@@ -32,9 +32,9 @@ class Company(Node):
         node_models = (
             info.context.route_service.get(edge.route_id) for edge in edge_models
         )
-        nodes = map(Route.from_model, node_models)
+        nodes = list(map(Route.from_model, node_models))
         edges = list(map(lambda node: Edge[Route](node=node), nodes))
-        connection = Connection[Route](count=len(edges), edges=edges)
+        connection = Connection[Route](count=len(edges), nodes=nodes, edges=edges)
         return connection
 
     @classmethod

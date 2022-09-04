@@ -28,6 +28,7 @@ type City implements Node {
 
 type CityConnection {
   count: Int!
+  nodes: [City!]!
   edges: [CityEdge!]!
 }
 
@@ -58,6 +59,7 @@ type Company implements Node {
 
 type CompanyConnection {
   count: Int!
+  nodes: [Company!]!
   edges: [CompanyEdge!]!
 }
 
@@ -189,6 +191,7 @@ input RouteCompanyInput {
 
 type RouteConnection {
   count: Int!
+  nodes: [Route!]!
   edges: [RouteEdge!]!
 }
 

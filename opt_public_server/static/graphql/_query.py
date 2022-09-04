@@ -14,25 +14,25 @@ class Query:
     @strawberry.field
     def cities(self, info: Info) -> Connection[City]:
         models = info.context.city_service.list()
-        nodes = map(City.from_model, models)
+        nodes = list(map(City.from_model, models))
         edges = list(map(lambda node: Edge[City](node=node), nodes))
-        connection = Connection[City](count=len(edges), edges=edges)
+        connection = Connection[City](count=len(edges), nodes=nodes, edges=edges)
         return connection
 
     @strawberry.field
     def companies(self, info: Info) -> Connection[Company]:
         models = info.context.company_service.list()
-        nodes = map(Company.from_model, models)
+        nodes = list(map(Company.from_model, models))
         edges = list(map(lambda node: Edge[Company](node=node), nodes))
-        connection = Connection[Company](count=len(edges), edges=edges)
+        connection = Connection[Company](count=len(edges), nodes=nodes, edges=edges)
         return connection
 
     @strawberry.field
     def routes(self, info: Info) -> Connection[Route]:
         models = info.context.route_service.list()
-        nodes = map(Route.from_model, models)
+        nodes = list(map(Route.from_model, models))
         edges = list(map(lambda node: Edge[Route](node=node), nodes))
-        connection = Connection[Route](count=len(edges), edges=edges)
+        connection = Connection[Route](count=len(edges), nodes=nodes, edges=edges)
         return connection
 
     @strawberry.field
