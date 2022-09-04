@@ -1,0 +1,31 @@
+{
+  "data": {
+    "routes": {
+      "count": 4,
+      "edges": [
+        {
+          "node": {
+            "id": "0182f596-bce6-773d-9c2c-d0d3fbf70aab"
+          }
+        },
+        {
+          "node": {
+            "id": "0182f596-bfce-7401-a8c5-4650dd30db4d"
+          }
+        },
+        {
+          "node": {
+            "id": "0182f596-c115-7b83-b914-502e27815c33"
+          }
+        },
+        {
+          "node": {
+            "id": "0182f596-c257-73e6-8c4e-0d2452fc9f10"
+          }
+        }
+      ]
+    }
+  },
+  "errors": null,
+  "extensions": {}
+}

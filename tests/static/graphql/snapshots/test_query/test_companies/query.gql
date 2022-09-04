@@ -4,12 +4,6 @@ query {
     edges {
       node {
         id
-        name
-        abbreviation
-        geolocation {
-          lat
-          lon
-        }
       }
     }
   }

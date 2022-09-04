@@ -1,0 +1,14 @@
+{
+  "data": {
+    "route": {
+      "node": {
+        "id": "0182f596-bce6-773d-9c2c-d0d3fbf70aab",
+        "number": "1",
+        "numberPrefix": "A-",
+        "type": "Bus"
+      }
+    }
+  },
+  "errors": null,
+  "extensions": {}
+}

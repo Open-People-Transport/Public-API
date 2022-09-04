@@ -1,0 +1,10 @@
+query {
+  route(id: "0182f596-bce6-773d-9c2c-d0d3fbf70aab") {
+    node {
+      id
+      number
+      numberPrefix
+      type
+    }
+  }
+}

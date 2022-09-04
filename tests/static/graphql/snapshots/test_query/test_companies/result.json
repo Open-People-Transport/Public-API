@@ -5,35 +5,17 @@
       "edges": [
         {
           "node": {
-            "id": "0182c68d-0dda-7cce-b641-c8b0a4d531d1",
-            "name": "Test Company 1",
-            "abbreviation": "testcomp1",
-            "geolocation": {
-              "lat": "12.345678",
-              "lon": "123.456789"
-            }
+            "id": "0182c68d-0dda-7cce-b641-c8b0a4d531d1"
           }
         },
         {
           "node": {
-            "id": "0182c68d-11a9-7584-ad76-7bcf720b8dd6",
-            "name": "Test Company 2",
-            "abbreviation": "testcomp2",
-            "geolocation": {
-              "lat": "12.345678",
-              "lon": "123.456789"
-            }
+            "id": "0182c68d-11a9-7584-ad76-7bcf720b8dd6"
           }
         },
         {
           "node": {
-            "id": "0182c68d-131d-770f-a41d-742ee9a19d7a",
-            "name": "Test Company 3",
-            "abbreviation": "testcomp3",
-            "geolocation": {
-              "lat": "12.345678",
-              "lon": "123.456789"
-            }
+            "id": "0182c68d-131d-770f-a41d-742ee9a19d7a"
           }
         }
       ]

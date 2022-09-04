@@ -5,28 +5,12 @@
       "edges": [
         {
           "node": {
-            "id": "0182c670-fe8e-7686-b0bc-569973c69c40",
-            "name": "Test City 1",
-            "abbreviation": "testcity1",
-            "geobounds": {
-              "minLat": "12.345678",
-              "minLon": "12.345678",
-              "maxLat": "87.654321",
-              "maxLon": "87.654321"
-            }
+            "id": "0182c670-fe8e-7686-b0bc-569973c69c40"
           }
         },
         {
           "node": {
-            "id": "0182c671-4f9a-7bac-8223-f92a7fe4be6d",
-            "name": "Test City 2",
-            "abbreviation": "testcity2",
-            "geobounds": {
-              "minLat": "12.345678",
-              "minLon": "12.345678",
-              "maxLat": "87.654321",
-              "maxLon": "87.654321"
-            }
+            "id": "0182c671-4f9a-7bac-8223-f92a7fe4be6d"
           }
         }
       ]

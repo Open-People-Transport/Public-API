@@ -1,0 +1,226 @@
+"""
+str(object='') -> str
+str(bytes_or_buffer[, encoding[, errors]]) -> str
+
+Create a new string object from the given object. If encoding or
+errors is specified, then the object must expose a data buffer
+that will be decoded using the given encoding and error handler.
+Otherwise, returns the result of object.__str__() (if defined)
+or repr(object).
+encoding defaults to sys.getdefaultencoding().
+errors defaults to 'strict'.
+"""
+scalar Abbreviation
+
+"""A physical area that combines multiple routes, stops, and companies."""
+type City implements Node {
+  id: UUID!
+  name: FullName!
+  abbreviation: Abbreviation!
+  geobounds: Geobounds!
+}
+
+type CityConnection {
+  count: Int!
+  edges: [CityEdge!]!
+}
+
+type CityEdge {
+  node: City!
+}
+
+"""A physical area that combines multiple routes, stops, and companies."""
+input CityInput {
+  name: FullName!
+  abbreviation: Abbreviation!
+  geobounds: GeoboundsInput!
+  id: UUID = null
+}
+
+"""
+An organization that owns a fleet of vehicles and serves transport routes.
+"""
+type Company implements Node {
+  id: UUID!
+  name: FullName!
+  abbreviation: Abbreviation!
+  geolocation: Geolocation!
+}
+
+type CompanyConnection {
+  count: Int!
+  edges: [CompanyEdge!]!
+}
+
+type CompanyEdge {
+  node: Company!
+}
+
+"""
+An organization that owns a fleet of vehicles and serves transport routes.
+"""
+input CompanyInput {
+  name: FullName!
+  abbreviation: Abbreviation!
+  geolocation: GeolocationInput!
+  cityId: UUID!
+  id: UUID = null
+}
+
+"""
+str(object='') -> str
+str(bytes_or_buffer[, encoding[, errors]]) -> str
+
+Create a new string object from the given object. If encoding or
+errors is specified, then the object must expose a data buffer
+that will be decoded using the given encoding and error handler.
+Otherwise, returns the result of object.__str__() (if defined)
+or repr(object).
+encoding defaults to sys.getdefaultencoding().
+errors defaults to 'strict'.
+"""
+scalar FullName
+
+"""Rectangular geographical bounds."""
+type Geobounds {
+  minLat: Latitude!
+  minLon: Longitude!
+  maxLat: Latitude!
+  maxLon: Longitude!
+}
+
+"""Rectangular geographical bounds."""
+input GeoboundsInput {
+  minLat: Latitude!
+  minLon: Longitude!
+  maxLat: Latitude!
+  maxLon: Longitude!
+}
+
+"""Single geographical point."""
+type Geolocation {
+  lat: Latitude!
+  lon: Longitude!
+}
+
+"""Single geographical point."""
+input GeolocationInput {
+  lat: Latitude!
+  lon: Longitude!
+}
+
+"""
+Latitude in decimal format with 6 places after the floating point.
+
+Ranges from -90.000000 to 90.000000.
+
+Provides precision of about 10cm.
+"""
+scalar Latitude
+
+"""
+Longitude in decimal format with 6 places after the floating point.
+
+Ranges from -180.000000 to 180.000000.
+
+Provides precision of about 10cm.
+"""
+scalar Longitude
+
+type Mutation {
+  addCity(city: CityInput!): City!
+  addCompany(company: CompanyInput!): Company!
+  addRoute(route: RouteInput!): Route!
+}
+
+"""
+str(object='') -> str
+str(bytes_or_buffer[, encoding[, errors]]) -> str
+
+Create a new string object from the given object. If encoding or
+errors is specified, then the object must expose a data buffer
+that will be decoded using the given encoding and error handler.
+Otherwise, returns the result of object.__str__() (if defined)
+or repr(object).
+encoding defaults to sys.getdefaultencoding().
+errors defaults to 'strict'.
+"""
+scalar NamePrefix
+
+"""An object with a universally unique identifier."""
+interface Node {
+  id: UUID!
+}
+
+type Query {
+  cities: CityConnection!
+  companies: CompanyConnection!
+  routes: RouteConnection!
+  city(id: UUID!): CityEdge!
+  company(id: UUID!): CompanyEdge!
+  route(id: UUID!): RouteEdge!
+}
+
+"""
+A line that passes through multple stops.
+Each stop is located at a unique distance along a route.
+Serviced by one or more companies.
+"""
+type Route implements Node {
+  id: UUID!
+  number: ShorterName!
+  numberPrefix: NamePrefix!
+  type: Type!
+}
+
+"""A link between a company and a route."""
+input RouteCompanyInput {
+  companyId: UUID!
+}
+
+type RouteConnection {
+  count: Int!
+  edges: [RouteEdge!]!
+}
+
+type RouteEdge {
+  node: Route!
+}
+
+"""
+A line that passes through multple stops.
+Each stop is located at a unique distance along a route.
+Serviced by one or more companies.
+"""
+input RouteInput {
+  number: ShorterName!
+  numberPrefix: NamePrefix!
+  type: Type!
+  cityId: UUID!
+  companyEdges: [RouteCompanyInput!]!
+  id: UUID = null
+}
+
+"""
+str(object='') -> str
+str(bytes_or_buffer[, encoding[, errors]]) -> str
+
+Create a new string object from the given object. If encoding or
+errors is specified, then the object must expose a data buffer
+that will be decoded using the given encoding and error handler.
+Otherwise, returns the result of object.__str__() (if defined)
+or repr(object).
+encoding defaults to sys.getdefaultencoding().
+errors defaults to 'strict'.
+"""
+scalar ShorterName
+
+"""An enumeration."""
+enum Type {
+  Bus
+  Trolley
+  Tram
+  Minibus
+}
+
+scalar UUID

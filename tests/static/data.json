@@ -1,0 +1,95 @@
+{
+  "cities": [
+    {
+      "id": "0182c670-fe8e-7686-b0bc-569973c69c40",
+      "name": "Test City 1",
+      "abbreviation": "testcity1",
+      "geobounds": {
+        "min_lat": "12.345678",
+        "min_lon": "12.345678",
+        "max_lat": "87.654321",
+        "max_lon": "87.654321"
+      }
+    },
+    {
+      "id": "0182c671-4f9a-7bac-8223-f92a7fe4be6d",
+      "name": "Test City 2",
+      "abbreviation": "testcity2",
+      "geobounds": {
+        "min_lat": "12.345678",
+        "min_lon": "12.345678",
+        "max_lat": "87.654321",
+        "max_lon": "87.654321"
+      }
+    }
+  ],
+  "companies": [
+    {
+      "id": "0182c68d-0dda-7cce-b641-c8b0a4d531d1",
+      "name": "Test Company 1",
+      "abbreviation": "testcomp1",
+      "geolocation": {
+        "lat": "12.345678",
+        "lon": "123.456789"
+      },
+      "city_id": "0182c670-fe8e-7686-b0bc-569973c69c40"
+    },
+    {
+      "id": "0182c68d-11a9-7584-ad76-7bcf720b8dd6",
+      "name": "Test Company 2",
+      "abbreviation": "testcomp2",
+      "geolocation": {
+        "lat": "12.345678",
+        "lon": "123.456789"
+      },
+      "city_id": "0182c670-fe8e-7686-b0bc-569973c69c40"
+    },
+    {
+      "id": "0182c68d-131d-770f-a41d-742ee9a19d7a",
+      "name": "Test Company 3",
+      "abbreviation": "testcomp3",
+      "geolocation": {
+        "lat": "12.345678",
+        "lon": "123.456789"
+      },
+      "city_id": "0182c671-4f9a-7bac-8223-f92a7fe4be6d"
+    }
+  ],
+  "routes": [
+    {
+      "id": "0182f596-bce6-773d-9c2c-d0d3fbf70aab",
+      "number": "1",
+      "number_prefix": "A-",
+      "type": "BUS",
+      "city_id": "0182c670-fe8e-7686-b0bc-569973c69c40"
+    },
+    {
+      "id": "0182f596-bfce-7401-a8c5-4650dd30db4d",
+      "number": "2",
+      "number_prefix": "A-",
+      "type": "BUS",
+      "city_id": "0182c670-fe8e-7686-b0bc-569973c69c40"
+    },
+    {
+      "id": "0182f596-c115-7b83-b914-502e27815c33",
+      "number": "1",
+      "number_prefix": "Tl-",
+      "type": "TROLLEY",
+      "city_id": "0182c671-4f9a-7bac-8223-f92a7fe4be6d"
+    },
+    {
+      "id": "0182f596-c257-73e6-8c4e-0d2452fc9f10",
+      "number": "1",
+      "number_prefix": "Tm-",
+      "type": "TRAM",
+      "city_id": "0182c671-4f9a-7bac-8223-f92a7fe4be6d"
+    },
+    {
+      "id": "0182f596-c257-73e6-8c4e-0d2452fc9f10",
+      "number": "1",
+      "number_prefix": "T-",
+      "type": "MINIBUS",
+      "city_id": "0182c671-4f9a-7bac-8223-f92a7fe4be6d"
+    }
+  ]
+}

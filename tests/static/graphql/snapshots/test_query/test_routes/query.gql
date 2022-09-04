@@ -1,5 +1,5 @@
 query {
-  cities {
+  routes {
     count
     edges {
       node {

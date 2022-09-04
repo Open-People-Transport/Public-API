@@ -2,7 +2,7 @@ import json
 from dataclasses import asdict
 from pathlib import Path
 
-import pytest
+from pytest import fixture
 from strawberry import Schema
 
 from opt_public_server.common.graphql import Context
@@ -15,10 +15,15 @@ from tests.static.repositories import (
 )
 
 
-schema = Schema(query=Query, mutation=Mutation)
+_schema = Schema(query=Query, mutation=Mutation)
 
 
-@pytest.fixture
+@fixture
+def schema():
+    return _schema
+
+
+@fixture
 def context():
     return Context(
         city_service=CityService(CityTestRepository()),
@@ -27,7 +32,7 @@ def context():
     )
 
 
-@pytest.fixture
+@fixture
 def exec_query(context, snapshot):
     query_file: Path = snapshot.snapshot_dir.joinpath("query.gql")
     query = query_file.read_text()
@@ -39,12 +44,12 @@ def exec_query(context, snapshot):
         variables = {}
 
     def _exec_guery():
-        return schema.execute_sync(query, variables, context_value=context)
+        return _schema.execute_sync(query, variables, context_value=context)
 
     return _exec_guery
 
 
-@pytest.fixture
+@fixture
 def assert_snapshot_match(snapshot):
     def _assert_snapshot_match(result):
         value = json.dumps(asdict(result), indent=2, default=str)
