@@ -1,0 +1,17 @@
+query {
+  companies {
+    edges {
+      node {
+        id
+        routes {
+          count
+          edges {
+            node {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -7,9 +7,15 @@ from strawberry import Schema
 
 from opt_public_server.common.graphql import Context
 from opt_public_server.static.graphql import Mutation, Query
-from opt_public_server.static.services import CityService, CompanyService, RouteService
+from opt_public_server.static.services import (
+    CityService,
+    CompanyRouteService,
+    CompanyService,
+    RouteService,
+)
 from tests.static.repositories import (
     CityTestRepository,
+    CompanyRouteTestRepository,
     CompanyTestRepository,
     RouteTestRepository,
 )
@@ -29,6 +35,7 @@ def context():
         city_service=CityService(CityTestRepository()),
         company_service=CompanyService(CompanyTestRepository()),
         route_service=RouteService(RouteTestRepository()),
+        company_route_service=CompanyRouteService(CompanyRouteTestRepository()),
     )
 
 

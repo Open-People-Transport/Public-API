@@ -9,12 +9,14 @@ from opt_public_server.static.core import City, Company, CompanyRoute, Route
 from opt_public_server.static.repositories import (
     CityRepository,
     CompanyRepository,
+    CompanyRouteRepository,
     RouteRepository,
 )
 
 
 _initial_data = parse_file_as(
-    dict[str, list[City | Company | Route]], Path(__file__) / ".." / "data.json"
+    dict[str, list[City | Company | Route | CompanyRoute]],
+    Path(__file__) / ".." / "data.json",
 )
 
 
@@ -67,3 +69,32 @@ class RouteTestRepository(_TestRepository, RouteRepository):
 
     def add_company(self, model: Route, edge: CompanyRoute) -> None:
         raise NotImplementedError
+
+
+class CompanyRouteTestRepository(CompanyRouteRepository):
+    def __init__(self) -> None:
+        initial_models: list[CompanyRoute] = _initial_data[
+            "company_routes"
+        ]  # type: ignore
+        self._data = {
+            (model.company_id, model.route_id): model.copy()
+            for model in (initial_models or [])
+        }
+
+    def list(self, company_id: Optional[UUID] = None, route_id: Optional[UUID] = None):
+        filters = []
+        if company_id is not None:
+            filters.append(lambda cr: cr.company_id == company_id)
+        if route_id is not None:
+            filters.append(lambda cr: cr.route_id == route_id)
+        return list(multifilter(filters, self._data.values()))
+
+    def get(self, company_id, route_id):
+        return self._data.get((company_id, route_id))
+
+    def create(self, model):
+        assert (model.company_id, model.route_id) not in self._data
+        self._data[(model.company_id, model.route_id)] = model
+
+    def delete(self, company_id, route_id):
+        return self._data.pop((company_id, route_id))

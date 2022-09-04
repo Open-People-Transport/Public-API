@@ -51,6 +51,9 @@ type Company implements Node {
   name: FullName!
   abbreviation: Abbreviation!
   geolocation: Geolocation!
+
+  """Transport routes that this company operates"""
+  routes: RouteConnection!
 }
 
 type CompanyConnection {

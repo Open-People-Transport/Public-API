@@ -99,3 +99,45 @@ class RouteRepository(repositories.RouteRepository):
         scalar = CompanyRoute.from_model(edge)
         self.session.add(scalar)
         self.session.commit()
+
+
+class CompanyRouteRepository(repositories.CompanyRouteRepository):
+    def __init__(self, session: Session) -> None:
+        self.session = session
+
+    def list(
+        self,
+        company_id: Optional[UUID] = None,
+        route_id: Optional[UUID] = None,
+    ) -> list[core.CompanyRoute]:
+        stmt = select(CompanyRoute)
+        if company_id is not None:
+            stmt = stmt.where(CompanyRoute.company_id == company_id)
+        if route_id is not None:
+            stmt = stmt.where(CompanyRoute.route_id == route_id)
+        scalars = self.session.execute(stmt).scalars()
+        models = list(map(CompanyRoute.to_model, scalars))
+        return models
+
+    def get(self, company_id: UUID, route_id: UUID) -> core.CompanyRoute:
+        stmt = (
+            select(CompanyRoute)
+            .where(CompanyRoute.company_id == company_id)
+            .where(CompanyRoute.route_id == route_id)
+        )
+        scalar = self.session.execute(stmt).scalar_one()
+        model = scalar.to_model()
+        return model
+
+    def create(self, model: core.CompanyRoute) -> None:
+        scalar = CompanyRoute.from_model(model)
+        self.session.add(scalar)
+        self.session.commit()
+
+    def delete(self, company_id: UUID, route_id: UUID) -> None:
+        stmt = (
+            delete(CompanyRoute)
+            .where(CompanyRoute.company_id == company_id)
+            .where(CompanyRoute.route_id == route_id)
+        )
+        self.session.execute(stmt)

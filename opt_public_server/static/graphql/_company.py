@@ -5,13 +5,18 @@ import strawberry
 
 from opt_public_server.common.graphql import (
     Abbreviation,
+    Connection,
+    Edge,
     FullName,
     Geolocation,
     GeolocationInput,
+    Info,
     Node,
 )
 from opt_public_server.common.utils import description
 from opt_public_server.static import core
+
+from ._route import Route
 
 
 @strawberry.type(description=description(core.Company))
@@ -20,6 +25,17 @@ class Company(Node):
     name: FullName
     abbreviation: Abbreviation
     geolocation: Geolocation
+
+    @strawberry.field(description="Transport routes that this company operates")
+    def routes(self, info: Info) -> Connection[Route]:
+        edge_models = info.context.company_route_service.list(company_id=self.id)
+        node_models = (
+            info.context.route_service.get(edge.route_id) for edge in edge_models
+        )
+        nodes = map(Route.from_model, node_models)
+        edges = list(map(lambda node: Edge[Route](node=node), nodes))
+        connection = Connection[Route](count=len(edges), edges=edges)
+        return connection
 
     @classmethod
     def from_model(cls, model: core.Company):

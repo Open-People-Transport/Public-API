@@ -65,3 +65,25 @@ class RouteRepository(ABC):
     @abstractmethod
     def add_company(self, model: Route, edge: CompanyRoute) -> None:
         ...
+
+
+class CompanyRouteRepository(ABC):
+    @abstractmethod
+    def list(
+        self,
+        company_id: Optional[UUID] = None,
+        route_id: Optional[UUID] = None,
+    ) -> list[CompanyRoute]:
+        ...
+
+    @abstractmethod
+    def get(self, company_id: UUID, route_id: UUID) -> CompanyRoute:
+        ...
+
+    @abstractmethod
+    def create(self, model: CompanyRoute) -> None:
+        ...
+
+    @abstractmethod
+    def delete(self, company_id: UUID, route_id: UUID) -> None:
+        ...
