@@ -1,34 +1,34 @@
 import strawberry
 
 from opt_public_server.common import core
-from opt_public_server.common.utils import description
+from opt_public_server.common.utils import ModelInfo
 
 
 FullName = strawberry.scalar(
     core.FullName,
-    description=description(core.FullName),
+    description=ModelInfo(core.FullName).gqldescription,
 )
 
 Abbreviation = strawberry.scalar(
     core.Abbreviation,
-    description=description(core.Abbreviation),
+    description=ModelInfo(core.Abbreviation).gqldescription,
 )
 
 
 ShorterName = strawberry.scalar(
     core.ShorterName,
-    description=description(core.ShorterName),
+    description=ModelInfo(core.ShorterName).gqldescription,
 )
 
 NamePrefix = strawberry.scalar(
     core.NamePrefix,
-    description=description(core.NamePrefix),
+    description=ModelInfo(core.NamePrefix).gqldescription,
 )
 
 
 Latitude = strawberry.scalar(
     core.Latitude,
-    description=description(core.Latitude),
+    description=ModelInfo(core.Latitude).gqldescription,
     serialize="{:8.6f}".format,
     parse_literal=lambda l: core.Latitude(l.value),
 )
@@ -36,7 +36,7 @@ Latitude = strawberry.scalar(
 
 Longitude = strawberry.scalar(
     core.Longitude,
-    description=description(core.Longitude),
+    description=ModelInfo(core.Longitude).gqldescription,
     serialize="{:9.6f}".format,
     parse_literal=lambda l: core.Longitude(l.value),
 )

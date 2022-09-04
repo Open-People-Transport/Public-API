@@ -4,13 +4,13 @@ from uuid import UUID
 import strawberry
 
 from opt_public_server.common.graphql import NamePrefix, Node, ShorterName
-from opt_public_server.common.utils import description
+from opt_public_server.common.utils import ModelInfo
 from opt_public_server.static import core
 
 from ._types import Type
 
 
-@strawberry.type(description=description(core.Route))
+@strawberry.type(description=ModelInfo(core.Route).gqldescription)
 class Route(Node):
     id: UUID
     number: ShorterName
@@ -27,7 +27,7 @@ class Route(Node):
         )
 
 
-@strawberry.input(description=description(core.CompanyRoute))
+@strawberry.input(description=ModelInfo(core.CompanyRoute).gqldescription)
 class RouteCompanyInput:
     company_id: UUID
 
@@ -38,7 +38,7 @@ class RouteCompanyInput:
         )
 
 
-@strawberry.input(description=description(core.Route))
+@strawberry.input(description=ModelInfo(core.Route).gqldescription)
 class RouteInput:
     number: ShorterName
     number_prefix: NamePrefix

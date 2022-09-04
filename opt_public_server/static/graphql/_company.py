@@ -13,13 +13,13 @@ from opt_public_server.common.graphql import (
     Info,
     Node,
 )
-from opt_public_server.common.utils import description
+from opt_public_server.common.utils import ModelInfo
 from opt_public_server.static import core
 
 from ._route import Route
 
 
-@strawberry.type(description=description(core.Company))
+@strawberry.type(description=ModelInfo(core.Company).gqldescription)
 class Company(Node):
     id: UUID
     name: FullName
@@ -47,7 +47,7 @@ class Company(Node):
         )
 
 
-@strawberry.input(description=description(core.Company))
+@strawberry.input(description=ModelInfo(core.Company).gqldescription)
 class CompanyInput:
     name: FullName
     abbreviation: Abbreviation

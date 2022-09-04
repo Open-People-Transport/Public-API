@@ -1,10 +1,25 @@
-from inspect import getdoc
+from inspect import cleandoc, isclass
 from typing import Any, Callable, Iterable, TypeVar
 
 
-def description(obj: Any) -> str:
-    """Get description of a class, attained from docstrings"""
-    return getdoc(obj) or ""
+class ModelInfo:
+    __slots__ = ("title", "description")
+
+    def __init__(self, obj: Any) -> None:
+        try:
+            schema = obj.schema()
+        except Exception:
+            cls = obj if isclass(obj) else type(obj)
+            self.title = cls.__name__
+            self.description = None if cls.__doc__ is None else cleandoc(cls.__doc__)
+        else:
+            self.title = schema["title"]
+            self.description = schema.get("description", None)
+
+    @property
+    def gqldescription(self) -> str:
+        # Strawberry only accepts strings as descriptions, but None should be used.
+        return self.description  # type: ignore
 
 
 _T = TypeVar("_T")

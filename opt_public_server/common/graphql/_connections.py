@@ -4,10 +4,10 @@ from uuid import UUID
 import strawberry
 
 from opt_public_server.common import core
-from opt_public_server.common.utils import description
+from opt_public_server.common.utils import ModelInfo
 
 
-@strawberry.interface(description=description(core.Node))
+@strawberry.interface(description=ModelInfo(core.Node).gqldescription)
 class Node:
     id: UUID
 

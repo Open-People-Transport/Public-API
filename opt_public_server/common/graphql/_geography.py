@@ -1,12 +1,12 @@
 import strawberry
 
 from opt_public_server.common import core
-from opt_public_server.common.utils import description
+from opt_public_server.common.utils import ModelInfo
 
 from ._types import Latitude, Longitude
 
 
-@strawberry.type(description=description(core.Geolocation))
+@strawberry.type(description=ModelInfo(core.Geolocation).gqldescription)
 class Geolocation:
     lat: Latitude
     lon: Longitude
@@ -19,7 +19,7 @@ class Geolocation:
         )
 
 
-@strawberry.input(description=description(core.Geolocation))
+@strawberry.input(description=ModelInfo(core.Geolocation).gqldescription)
 class GeolocationInput:
     lat: Latitude
     lon: Longitude
@@ -31,7 +31,7 @@ class GeolocationInput:
         )
 
 
-@strawberry.type(description=description(core.Geobounds))
+@strawberry.type(description=ModelInfo(core.Geobounds).gqldescription)
 class Geobounds:
     min_lat: Latitude
     min_lon: Longitude
@@ -48,7 +48,7 @@ class Geobounds:
         )
 
 
-@strawberry.input(description=description(core.Geobounds))
+@strawberry.input(description=ModelInfo(core.Geobounds).gqldescription)
 class GeoboundsInput:
     min_lat: Latitude
     min_lon: Longitude
